@@ -15,11 +15,7 @@ function divide(a, b) {
     return a / b;
 }
 
-// Testing
-let a = 1;
-let b = 2;
-sum = add(a, b);
-difference = subtract(a, b);
-product = multiply(a, b);
-quotient = divide(a, b);
-console.log(sum, difference, product, quotient);
+// Global variables
+let a;
+let b;
+let operator;
