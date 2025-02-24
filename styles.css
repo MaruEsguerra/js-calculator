@@ -1,81 +1,103 @@
 *, *::before, *::after {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
 }
 
 body {
     padding: 0;
     margin: 0;
-}
-
-.calculator {
+    background: linear-gradient(135deg, #1a1a2e 20%, #16213e 100%);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    min-height: 100vh;
+}
+
+.calculator {
+    background: linear-gradient(180deg, #252b48 20%, #1a1f35 100%);
+    padding: 25px;
+    border-radius: 24px;
+    box-shadow:
+        0 10px 30px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    width: 380px;
+    backdrop-filter: blur(10px);
 }
 
 .display {
-    max-width: 400px;
-    display: flex;
-    flex-wrap: wrap;
+    background: linear-gradient(180deg, #1a1f35 20%, #252b48 100%);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 16px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+    /* width: 100%; */
 }
 
-.previous-operand, .current-operand {
-    flex: 1 100%;
-    justify-content: right;
+.previous-operand {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.25rem;
+    text-align: right;
+    min-height: 30px;
+    margin-bottom: 8px;
+    font-weight: 300;
+}
+
+.current-operand {
+    color: white;
+    font-size: 2.75rem;
+    text-align: right;
+    min-height: 50px;
+    word-wrap: break-word;
+    word-break: break-all;
+    font-weight: 500;
 }
 
 .buttons {
-    max-width: 400px;
     display: flex;
     flex-wrap: wrap;
+    gap: 12px;
 }
 
 button {
-    flex: 1 24.5%;
-    padding: 15px;
-    font-size: 24px;
+    flex: 1 calc(25% - 9px);
+    padding: 22px 0;
+    font-size: 22px;
     cursor: pointer;
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: 1px;
+    border: none;
+    border-radius: 16px;
+    transition: all 0.2s ease;
+    font-weight: 500;
 }
 
 .btn-percentage, .btn-clear-entry, .btn-all-clear,
 .btn-sign, .btn-decimal {
-    background-color: rgba(57, 58, 69, .95);
-    color: white;
-}
-
-.btn-percentage:hover, .btn-clear-entry:hover, .btn-all-clear:hover,
-.btn-sign:hover, .btn-decimal:hover {
-    background-color: rgba(57, 58, 69, 1);
+    background: #464856;
     color: white;
 }
 
 .btn-number {
-    background-color: rgba(80, 81, 97, .95);
+    background: #5C5D74;
     color: white;
 }
 
-.btn-number:hover {
-    background-color: rgba(80, 81, 97, 1);;
-}
-
 .btn-operator {
-    background-color: rgba(255, 165, 0, .85);
-}
-
-.btn-operator:hover {
-    background-color: rgba(255, 165, 0, 1);
+    background: #ff9500;
+    color: white;
+    font-weight: 600;
 }
 
 .btn-equals {
-    background-color: white;
+    background: #ff7b00;
+    color: white;
+    font-weight: 600;
 }
 
-.btn-equals:hover {
-    background-color: rgba(211, 211, 211, .75);
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
