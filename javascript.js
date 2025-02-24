@@ -1,34 +1,41 @@
 class Calculator {
     constructor(previousOperandDisplay, currentOperandDisplay) {
-        this.previousOperandDisplay = previousOperandDisplay
-        this.currentOperandDisplay = currentOperandDisplay
-        this.allClear()
+        this.previousOperandDisplay = previousOperandDisplay;
+        this.currentOperandDisplay = currentOperandDisplay;
+        this.allClear();
     }
 
     allClear() {
         this.currentOperand = "";
         this.previousOperand = "";
         this.operation = undefined;
+        this.readyForNewNumber = false;
     }
 
     delete() {
+        if (this.currentOperand === "") return;
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
     }
 
     percentage() {
-        if (this.currentOperand === "") return;
+        if (this.currentOperand === "" || isNaN(parseFloat(this.currentOperand))) return;
 
         const percentageValue = parseFloat(this.currentOperand) / 100;
-        this.currentOperand = percentageValue.toString();
+        this.currentOperand = percentageValue.toPrecision(12).toString();
     }
 
     sign() {
-        if (this.currentOperand === "") return;
+        if (this.currentOperand === "" || isNaN(parseFloat(this.currentOperand))) return;
         
         this.currentOperand = (parseFloat(this.currentOperand) * -1).toString();
     }
 
     appendNumber(number) {
+        if (this.readyForNewNumber) {
+            this.currentOperand = "";
+            this.readyForNewNumber = false;
+        }
+
         if (number === "." && this.currentOperand.includes(".")) return;
 
         this.currentOperand = this.currentOperand.toString() + number.toString();
@@ -44,6 +51,7 @@ class Calculator {
         this.operation = operator;
         this.previousOperand = this.currentOperand;
         this.currentOperand = "";
+        this.readyForNewNumber = false;
     }
 
     compute() {
@@ -60,36 +68,42 @@ class Calculator {
             case "-":
                 computation = previous - current;
                 break;
-            case "*":
+            case "x":
                 computation = previous * current;
                 break;
             case "÷":
+                if (current === 0) {
+                    this.currentOperand = "Error";
+                    this.operation = undefined;
+                    this.previousOperand = "";
+                    return;
+                }
+
                 computation = previous / current;
                 break;
             default:
                 return;
         }
 
-        this.currentOperand = computation;
+        this.currentOperand = parseFloat(computation.toPrecision(12)).toString();
         this.operation = undefined;
         this.previousOperand = "";
+        this.readyForNewNumber = true;
     }
 
     getDisplayNumber(number) {
         const stringNumber = number.toString();
         const integer = parseFloat(stringNumber.split(".")[0]);
         const decimal = stringNumber.split(".")[1];
+        
         let integerDisplay;
         if (isNaN(integer)) {
             integerDisplay = "";
         } else {
             integerDisplay = integer.toLocaleString("en", {maximumFractionDigits: 0});
         }
-        if (decimal != null) {
-            return `${integerDisplay}.${decimal}`;
-        } else {
-            return integerDisplay;
-        }
+
+        return decimal ? `${integerDisplay}.${decimal}` : integerDisplay;
     }
 
     updateDisplay() {
