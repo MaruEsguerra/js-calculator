@@ -1,3 +1,32 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.display {
+    max-width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.previous-operand, .current-operand {
+    flex: 1 100%;
+    justify-content: right;
+}
+
 .buttons {
     max-width: 400px;
     display: flex;
@@ -5,8 +34,48 @@
 }
 
 button {
-    flex: 1 25%;
+    flex: 1 24.5%;
     padding: 15px;
     font-size: 24px;
+    cursor: pointer;
+    border: 1px solid black;
     border-radius: 5px;
+    margin: 1px;
+}
+
+.btn-percentage, .btn-clear-entry, .btn-all-clear,
+.btn-sign, .btn-decimal {
+    background-color: rgba(57, 58, 69, .95);
+    color: white;
+}
+
+.btn-percentage:hover, .btn-clear-entry:hover, .btn-all-clear:hover,
+.btn-sign:hover, .btn-decimal:hover {
+    background-color: rgba(57, 58, 69, 1);
+    color: white;
+}
+
+.btn-number {
+    background-color: rgba(80, 81, 97, .95);
+    color: white;
+}
+
+.btn-number:hover {
+    background-color: rgba(80, 81, 97, 1);;
+}
+
+.btn-operator {
+    background-color: rgba(255, 165, 0, .85);
+}
+
+.btn-operator:hover {
+    background-color: rgba(255, 165, 0, 1);
+}
+
+.btn-equals {
+    background-color: white;
+}
+
+.btn-equals:hover {
+    background-color: rgba(211, 211, 211, .75);
 }
