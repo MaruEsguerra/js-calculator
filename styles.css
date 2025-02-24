@@ -30,7 +30,6 @@ body {
     margin-bottom: 25px;
     border-radius: 16px;
     box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-    /* width: 100%; */
 }
 
 .previous-operand {
@@ -39,7 +38,7 @@ body {
     text-align: right;
     min-height: 30px;
     margin-bottom: 8px;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .current-operand {
@@ -69,7 +68,7 @@ button {
     font-weight: 500;
 }
 
-.btn-percentage, .btn-clear-entry, .btn-all-clear,
+.btn-percentage, .btn-delete, .btn-all-clear,
 .btn-sign, .btn-decimal {
     background: #464856;
     color: white;
